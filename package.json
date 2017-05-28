@@ -1,0 +1,29 @@
+{
+  "name": "game-of-life",
+  "version": "1.0.0",
+  "description": "Javascript based TDD",
+  "main": "index.js",
+  "dependencies": {
+    "node": "^0.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.4.2"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theflyingmantis/game-of-life.git"
+  },
+  "keywords": [
+    "TDD",
+    "js"
+  ],
+  "author": "abhinav daval",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/theflyingmantis/game-of-life/issues"
+  },
+  "homepage": "https://github.com/theflyingmantis/game-of-life#readme"
+}
