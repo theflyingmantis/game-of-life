@@ -19,8 +19,8 @@ Grid.prototype = {
  		return this.cells[this.cellRepresentation(x,y)];
  	},
  	getAliveNeighbours : function(cell){
-    x = cell.x;
-    y = cell.y;
+    var x = cell.x;
+    var y = cell.y;
     var aliveCount = 0;
     for(var i = -1; i < 2; i++){
     	for(var j = -1; j < 2; j++){
