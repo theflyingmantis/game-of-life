@@ -28,6 +28,18 @@ describe('Game-of-life',function(){
 			grid.addCell(cell);
 			assert.equal(0,grid.getAliveNeighbours(cell));
 		});
+
+		it('it should return 4 alive neighbours when 4 alive cells are added in its surrounding', function(){
+      var grid = new Game.Grid();
+			var cell = new Game.Cell(2,2,true);
+			grid.addCell(cell);
+			grid.addCell(new Game.Cell(2,3,true));
+		  grid.addCell(new Game.Cell(3,2,true));
+		  grid.addCell(new Game.Cell(2,1,true));
+		  grid.addCell(new Game.Cell(1,2,true));
+      assert.equal(4,grid.getAliveNeighbours(cell));
+		});
+
   });
 
 });
