@@ -36,6 +36,23 @@ Grid.prototype = {
 
 };
 
+Cell.prototype = {
+	updateStatus : function (aliveneighbours){
+		var finalStatus = false;
+		switch (aliveneighbours){
+			case 2:
+        finalStatus = this.status;
+        break;
+    	case 3:
+        finalStatus = true;
+        break;
+    	default: 
+    		finalStatus = false;
+		}
+		this.status=finalStatus;
+	}
+};
+
 module.exports = {
  	Grid : Grid,
  	Cell : Cell,

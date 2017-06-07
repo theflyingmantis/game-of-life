@@ -42,4 +42,18 @@ describe('Game-of-life',function(){
 
   });
 
+  describe('updateStatus',function(){
+		it('it should update status of cell as alive with 3 living cells as neighbour',function(){
+			var grid = new Game.Grid();
+			var cell = new Game.Cell(2,2,false);
+			grid.addCell(cell);
+			grid.addCell(new Game.Cell(2,3,true));
+		  grid.addCell(new Game.Cell(3,2,true));
+		  grid.addCell(new Game.Cell(2,1,true));
+		  cell.updateStatus(grid.getAliveNeighbours(cell));
+		  assert.equal(true,cell.status);
+		});
+  
+  });
+
 });
