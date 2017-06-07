@@ -11,4 +11,13 @@ describe('Game-of-life',function(){
 			assert.equal(cell,grid.cells.x2y3);
 		});
 	});
+
+	describe('getCell',function(){
+		it('retrieve (4,5) cell object from grid',function(){
+			var grid = new Game.Grid();
+			var cell = new Game.Cell(4,5,true);
+			grid.addCell(cell);
+			assert.equal(grid.getCell(4,5),cell);
+		});
+	});
 });

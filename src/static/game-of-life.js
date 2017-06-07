@@ -15,6 +15,9 @@ Grid.prototype = {
  	addCell : function(cell){
  		this.cells[this.cellRepresentation(cell.x,cell.y)] = cell;
  	},
+ 	getCell : function(x,y){
+ 		return this.cells[this.cellRepresentation(x,y)];
+ 	},
 
 };
 
