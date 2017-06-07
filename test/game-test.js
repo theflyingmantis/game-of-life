@@ -20,4 +20,14 @@ describe('Game-of-life',function(){
 			assert.equal(grid.getCell(4,5),cell);
 		});
 	});
+    
+  describe('getAliveNeighbours', function(){
+		it('give zero alive neighbours',function(){
+			var grid = new Game.Grid();
+			var cell = new Game.Cell(1,1,true);
+			grid.addCell(cell);
+			assert.equal(0,grid.getAliveNeighbours(cell));
+		});
+  });
+
 });
