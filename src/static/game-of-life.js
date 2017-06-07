@@ -33,6 +33,17 @@ Grid.prototype = {
     }
     return aliveCount;
   },
+  updateGrid : function(){
+  	var copyCells= {};
+  	for (cell in this.cells)
+  	{
+  		copyCells[cell]=new Cell(this.cells[cell].x,this.cells[cell].y,this.cells[cell].status);
+  	}
+    for (var cell in copyCells){
+    		copyCells[cell].updateStatus(this.getAliveNeighbours(this.cells[cell]));
+		}
+		this.cells=copyCells;
+ 	}
 
 };
 

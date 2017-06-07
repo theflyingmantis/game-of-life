@@ -65,7 +65,21 @@ describe('Game-of-life',function(){
       cell.updateStatus(grid.getAliveNeighbours(cell));
 		  assert.equal(false,cell.status);
 		});
+  });
   
+   describe('updateGrid', function(){
+  	it('Checks if the grid is updated',function(){
+      var grid = new Game.Grid();
+			var cell = new Game.Cell(2,2,false);
+			grid.addCell(cell);
+			grid.addCell(new Game.Cell(2,3,false));
+		  grid.addCell(new Game.Cell(3,2,true));
+		  grid.addCell(new Game.Cell(2,1,true));
+		  grid.addCell(new Game.Cell(1,2,true));
+      grid.updateGrid();
+      assert.deepEqual([true,false,false,true,false],[grid.getCell(2,2).status,grid.getCell(2,3).status,grid.getCell(3,2).status,grid.getCell(2,1).status,grid.getCell(1,2).status])
+  	});
+
   });
 
 });
