@@ -53,6 +53,18 @@ describe('Game-of-life',function(){
 		  cell.updateStatus(grid.getAliveNeighbours(cell));
 		  assert.equal(true,cell.status);
 		});
+    
+    it('it should update status of cell as dead with 4 living cells as neighbour',function(){
+			var grid = new Game.Grid();
+			var cell = new Game.Cell(2,2,true);
+			grid.addCell(cell);
+			grid.addCell(new Game.Cell(2,3,true));
+		  grid.addCell(new Game.Cell(3,2,true));
+		  grid.addCell(new Game.Cell(2,1,true));
+		  grid.addCell(new Game.Cell(1,2,true));
+      cell.updateStatus(grid.getAliveNeighbours(cell));
+		  assert.equal(false,cell.status);
+		});
   
   });
 
