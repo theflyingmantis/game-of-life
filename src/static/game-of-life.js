@@ -37,7 +37,8 @@ Grid.prototype = {
   	var copyCells= {};
   	for (cell in this.cells)
   	{
-  		copyCells[cell]=new Cell(this.cells[cell].x,this.cells[cell].y,this.cells[cell].status);
+  		copyCells[cell] = new Cell(this.cells[cell].x,this.cells[cell].y,this.cells[cell].status);
+      //copyCells[cell] = this.cells[cell];
   	}
     for (var cell in copyCells){
     		copyCells[cell].updateStatus(this.getAliveNeighbours(this.cells[cell]));
