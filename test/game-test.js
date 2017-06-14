@@ -4,21 +4,31 @@ var Game = require('../src/static/game-of-life');
 
 describe('Game-of-life',function(){
 
-	describe('addCell',function(){
-		it('Add (2,3) cell to grid',function(){
+	describe('addActiveCell',function(){
+		it('Add (2,3) cell to activeCell',function(){
 			var grid = new Game.Grid();
 			var cell = new Game.Cell(2,3,true);
-			grid.addCell(cell);
-			assert.equal(cell,grid.cells.x2y3);
+			grid.addActiveCell(cell);
+			assert.equal(cell,grid.activeCells.x2y3);
 		});
 	});
 
-	describe('getCell',function(){
+  describe('addNextCell',function(){
+		it('Add (2,3) cell to nextCell',function(){
+			var grid = new Game.Grid();
+			var cell = new Game.Cell(2,3,true);
+			grid.addNextCell(2,3);
+			assert.deepEqual(cell,grid.nextCells.x2y3);
+		});
+	});
+
+
+	describe('getActiveCell',function(){
 		it('retrieve (4,5) cell object from grid',function(){
 			var grid = new Game.Grid();
 			var cell = new Game.Cell(4,5,true);
-			grid.addCell(cell);
-			assert.equal(grid.getCell(4,5),cell);
+			grid.addActiveCell(cell);
+			assert.equal(grid.getActiveCell(4,5),cell);
 		});
 	});
 
@@ -26,61 +36,35 @@ describe('Game-of-life',function(){
 		it('give zero alive neighbours',function(){
 			var grid = new Game.Grid();
 			var cell = new Game.Cell(1,1,true);
-			grid.addCell(cell);
-			assert.equal(0,grid.getAliveNeighbours(cell));
+			grid.addActiveCell(cell);
+			assert.equal(0,grid.getAliveNeighbours(1,1));
 		});
 
 		it('it should return 4 alive neighbours when 4 alive cells are added in its surrounding', function(){
       var grid = new Game.Grid();
-			var cell = new Game.Cell(2,2,true);
-			grid.addCell(cell);
-			grid.addCell(new Game.Cell(2,3,true));
-		  grid.addCell(new Game.Cell(3,2,true));
-		  grid.addCell(new Game.Cell(2,1,true));
-		  grid.addCell(new Game.Cell(1,2,true));
-      assert.equal(4,grid.getAliveNeighbours(cell));
+			var cell1 = new Game.Cell(2,3,true);
+      var cell2 = new Game.Cell(2,1,true);
+      var cell3 = new Game.Cell(1,2,true);
+      var cell4 = new Game.Cell(3,2,true);
+      grid.addActiveCell(cell1);
+      grid.addActiveCell(cell2);
+      grid.addActiveCell(cell3);
+      grid.addActiveCell(cell4);
+      assert.equal(4,grid.getAliveNeighbours(2,2));
 		});
 	});
 
-	describe('updateStatus',function(){
-		it('it should update status of cell as alive with 3 living cells as neighbour',function(){
-			var grid = new Game.Grid();
-			var cell = new Game.Cell(2,2,false);
-			grid.addCell(cell);
-			grid.addCell(new Game.Cell(2,3,true));
-		  grid.addCell(new Game.Cell(3,2,true));
-		  grid.addCell(new Game.Cell(2,1,true));
-		  cell.updateStatus(grid.getAliveNeighbours(cell));
-		  assert.equal(true,cell.status);
-		});
-		it('it should update status of cell as dead with 4 living cells as neighbour',function(){
-			var grid = new Game.Grid();
-			var cell = new Game.Cell(2,2,true);
-			grid.addCell(cell);
-			grid.addCell(new Game.Cell(2,3,true));
-		  grid.addCell(new Game.Cell(3,2,true));
-		  grid.addCell(new Game.Cell(2,1,true));
-		  grid.addCell(new Game.Cell(1,2,true));
-      cell.updateStatus(grid.getAliveNeighbours(cell));
-		  assert.equal(false,cell.status);
-		});
-		it('it should update status of cell as dead with 1 living cell as neighbour',function(){
-			var grid = new Game.Grid();
-			var cell = new Game.Cell(2,2,true);
-			grid.addCell(cell);
-			grid.addCell(new Game.Cell(2,3,true));
-		  grid.addCell(new Game.Cell(3,2,false));
-		  grid.addCell(new Game.Cell(2,1,false));
-		  grid.addCell(new Game.Cell(1,2,false));
-      cell.updateStatus(grid.getAliveNeighbours(cell));
-		  assert.equal(false,cell.status);
-		});
-	});
-  
   describe('updateGrid', function(){
-  	it('Checks if the grid is updated',function(){
-      //is tedious to do! :P Compare the string of final output of a random matrix and ur own expected string.
-      //If other method - please let me know!
+  	it('test',function(){
+      var grid = new Game.Grid();
+			var cell1 = new Game.Cell(2,2,true);
+      var cell2 = new Game.Cell(2,3,true);
+      var cell3 = new Game.Cell(3,3,true);
+      grid.addActiveCell(cell1);
+      grid.addActiveCell(cell2);
+      grid.addActiveCell(cell3);
+      grid.updateGrid();
+      assert.equal(true,grid.activeCells.x3y2.status);
   	});
   });
 
