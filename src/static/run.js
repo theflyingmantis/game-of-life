@@ -10,7 +10,7 @@ function addOrNot(density){
   return true;
 }
 
-function make_grid(){
+function makeGrid(){
   for (var i=0;i<=sizex;i++){
     for (var j=0;j<=sizey;j++){
       var randomStatus = addOrNot(density);
@@ -31,8 +31,6 @@ function wait(ms) {
 function canvasGrid(){
   var canvas= document.getElementById("myCanvas");
   var context= canvas.getContext("2d");
- // context.height = sizex*4;
-  //context.width = sizey*4;
   context.clearRect(0, 0, sizex*4, sizey*4);
   for(var i =0;i<sizex;i++){
      for(var j=0;j<sizey;j++){
@@ -44,11 +42,11 @@ function canvasGrid(){
   }
 }
 
-function onrepeat(){
+function onRepeat(){
   grid.updateGrid();
   wait(100);
   canvasGrid();
-  requestAnimationFrame(onrepeat);
+  requestAnimationFrame(onRepeat);
 }
 
 function querySize() {
@@ -62,9 +60,9 @@ function querySize() {
 
 function init(){
   querySize();
-  make_grid();
+  makeGrid();
   canvasGrid();
-  onrepeat();
+  onRepeat();
 }
 
 init();
