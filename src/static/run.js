@@ -1,26 +1,28 @@
-var sizex;
-var sizey;
-var density;
+'use strict';
+
+let sizex;
+let sizey;
+let density;
 
 var grid = new Grid();
 
-function addOrNot(density){
-  if (Math.random()>density)
+var addOrNot = function () {
+  if (Math.random() > density)
     return false;
   return true;
 }
 
-function makeGrid(){
-  for (var i=0;i<=sizex;i++){
-    for (var j=0;j<=sizey;j++){
-      var randomStatus = addOrNot(density);
+var makeGrid = function () {
+  for (var i = 0; i <= sizex; ++i) {
+    for (var j = 0; j <= sizey; ++j) {
+      var randomStatus = addOrNot();
       if (randomStatus == true)
-        grid.addActiveCell(new Cell(i,j,randomStatus));
+        grid.addActiveCell(new Cell(i, j, randomStatus));
     }
   }
 }
 
-function wait(ms) {
+var wait = function (ms) {
     var start = Date.now(),
         now = start;
     while (now - start < ms) {
@@ -28,37 +30,37 @@ function wait(ms) {
     }
 }
 
-function canvasGrid(){
-  var canvas= document.getElementById("myCanvas");
-  var context= canvas.getContext("2d");
+var canvasGrid = function () {
+  var canvas = document.getElementById('myCanvas');
+  var context = canvas.getContext('2d');
   context.clearRect(0, 0, sizex*4, sizey*4);
-  for(var i =0;i<sizex;i++){
-     for(var j=0;j<sizey;j++){
-       if (grid.getActiveCell(i,j)){
-          context.fillStyle= "Red";
-          context.fillRect(i*4,j*4,4,4);
+  for (var i = 0; i < sizex; ++i){
+     for (var j = 0; j < sizey; ++j){
+       if (grid.getActiveCell(i, j)){
+          context.fillStyle = 'Red';
+          context.fillRect(i*4, j*4, 4, 4);
        }
      }
   }
 }
 
-function onRepeat(){
+var onRepeat = function () {
   grid.updateGrid();
   wait(100);
   canvasGrid();
   requestAnimationFrame(onRepeat);
 }
 
-function querySize() {
-  sizey = prompt("Enter Rows", "100");
-  sizex = prompt("Enter Columns", "100");
-  density = prompt("Enter Density",0.5);
+var querySize = function () {
+  sizey = prompt('Enter Rows', '100');
+  sizex = prompt('Enter Columns', '100');
+  density = prompt('Enter Density', 0.5);
   var canvas = document.getElementById('myCanvas');
-  canvas.setAttribute("width",(sizex*4).toString());
-  canvas.setAttribute("height",(sizey*4).toString());
+  canvas.setAttribute('width', (sizex*4).toString());
+  canvas.setAttribute('height', (sizey*4).toString());
 }
 
-function init(){
+var init = function () {
   querySize();
   makeGrid();
   canvasGrid();

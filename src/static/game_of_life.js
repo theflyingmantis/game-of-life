@@ -1,35 +1,35 @@
-var Grid = function (){
+var Grid = function () {
  	this.activeCells={};
   this.nextCells={};
 };
 
-var Cell = function(x,y,status){
+var Cell = function (x,y,status) {
  	this.x = x;
  	this.y = y;
  	this.status = status;
 };
 
 Grid.prototype = {
- 	cellRepresentation : function(x,y){
+ 	cellRepresentation : function (x,y) {
  		return "x" + x + "y" + y;
  	},
- 	addActiveCell : function(cell){
+ 	addActiveCell : function (cell) {
  		this.activeCells[this.cellRepresentation(cell.x,cell.y)] = cell;
  	},
-  addNextCell : function(x,y){
+  addNextCell : function (x,y) {
     this.nextCells[this.cellRepresentation(x,y)] = new Cell(x,y,true);
   },
- 	getActiveCell : function(x,y){
+ 	getActiveCell : function (x,y) {
  		return this.activeCells[this.cellRepresentation(x,y)];
  	},
-  getNextCell : function(x,y){
+  getNextCell : function (x,y) {
     return this.nextCells[this.cellRepresentation(x,y)];
   },
-  getAliveNeighbours : function(x,y){
+  getAliveNeighbours : function (x,y) { 
     var aliveCount = 0;
-    for(var i = -1; i < 2; i++){
-      for(var j = -1; j < 2; j++){
-        if(x-i === x && y-j === y)
+    for(var i =- 1; i<2; i++){
+      for(var j =-1; j<2; j++){
+        if (x-i === x && y-j === y) 
           continue;
         var neighbour = this.activeCells[this.cellRepresentation(x-i,y-j)];
         if(neighbour)
@@ -38,7 +38,7 @@ Grid.prototype = {
     }
     return aliveCount;
   },
-  updateGrid : function(){
+  updateGrid : function () {
     for (aCell in this.activeCells){
       var x=this.activeCells[aCell].x;
       var y=this.activeCells[aCell].y;
@@ -66,9 +66,6 @@ Grid.prototype = {
     this.nextCells = {};
   }
 
-};
-
-Cell.prototype = {
 };
 
 module.exports = {
